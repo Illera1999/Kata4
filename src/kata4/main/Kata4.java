@@ -12,16 +12,38 @@ import kata4.view.MailListReader;
  * @author josei
  */
 public class Kata4 {
+    
+    private static String fileName;
+    private static List<Mail> miList;
+    private static Histograma<String> histograma;
+    private static HistogramDisplay histoDisplay ;
 
     public static void main(String[] args) {
         // TODO code application logic here
-        String fileName = new String ("src\\email.txt");
-        List<Mail> miList = MailListReader.read(fileName);
+        execute();
+        input();
+        process();
+        output();
         
-        Histograma<String> histograma = MailHistogramBuilder.build(miList);
+
         
-        HistogramDisplay histoDisplay = new HistogramDisplay("HISTOGRAMA", histograma);
+
+    }
+    
+    public static void execute(){
         histoDisplay.execute();
     }
+    
+    public static void input(){
+        fileName = new String ("src\\email.txt");
+        miList = MailListReader.read(fileName);
+    }
+    
+    public static  void process(){
+        histograma = MailHistogramBuilder.build(miList);
+    }
 
+    public static void output(){
+        histoDisplay= new HistogramDisplay("HISTOGRAMA", histograma);
+    }
 }
